@@ -1,0 +1,37 @@
+#INIT#.MAN.CMOS.END.DLL.FOREWARD.DLL.TAKE.EXTRACT-ZERO-BYTES-BY-ONe-BYTE-FLOWER.BY.FILE;-https://github.com/Euclideon/udSDKUnity;-  
+Assets/Plugins/EuclideonUdSDK/udSDK/UnityObjects/UDPPES.cs
+@@ -61,8 +61,13 @@ private void InitialiseBuffers(int newWidth, int newHeight)
+    void RebuildBuffers(int newWidth, int newHeight)
+    {
+        InitialiseBuffers(newWidth, newHeight);
+#if UNITY_2021_3_OR_NEWER
+        colourTexture.Reinitialize(width, height, TextureFormat.BGRA32, false);
+        depthTexture.Reinitialize(width, height, TextureFormat.RFloat, false);
+#else 
+        colourTexture.Resize(width, height, TextureFormat.BGRA32, false);
+        depthTexture.Resize(width, height, TextureFormat.RFloat, false);
+#endif
+        vRenderView.Destroy();
+        vRenderView.Create(GlobalUDContext.uContext, GlobalUDContext.renderer, (uint)width, (uint)height);
+        vRenderView.SetTargets(ref colourBuffer, 0, ref depthBuffer);
+  8 changes: 4 additions & 4 deletions8  
+Assets/Plugins/EuclideonUdSDK/udSDK/UnityObjects/udProjectNodeUnity.cs
+@@ -46,14 +46,14 @@ IEnumerator LoadMediaImage(SpriteRenderer sprite)
+    if (!URI.StartsWith("http") && !URI.StartsWith("www"))
+      URI = "file://" + Application.dataPath + "/" + URI;  
+
+    // warning : this syntax changes somewhat in later versions of Unity 
+    // warning : this syntax changes somewhat throughout versions of Unity 
+    using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(URI))
+    {
+      yield return uwr.SendWebRequest();
+
+      if (uwr.isNetworkError || uwr.isHttpError)
+      
+      if (uwr.result != UnityWebRequest.Result.Success)
+      {
+        Debug.Log(uwr.error);
+        Debug.LogWarning(uwr.error);
+      }
+      else
+      {REDUCE.CMOS.TOO.ZERO.AND.FREEZE.END.DLL.AND.OPEN.FORWARD.DLL.ALWAYS.
